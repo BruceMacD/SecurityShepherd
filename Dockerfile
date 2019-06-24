@@ -27,5 +27,8 @@ RUN sed -i 's/keystoreFile="conf\/TLS_KEYSTORE_FILE" keystorePass="TLS_KEYSTORE_
 COPY docker/tomcat/webxml.patch /usr/local/tomcat/conf/webxml.patch
 RUN patch /usr/local/tomcat/conf/web.xml /usr/local/tomcat/conf/webxml.patch
 
-EXPOSE 8080 8443
-CMD ["catalina.sh", "run"]
+ENV JPDA_ADDRESS="8000"
+ENV JPDA_TRANSPORT="dt_socket"
+
+EXPOSE 8080 8443 8000
+CMD ["catalina.sh", "jpda", "run"]

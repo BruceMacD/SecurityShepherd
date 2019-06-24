@@ -30,5 +30,6 @@ services:
     ports:
       - $HTTP_PORT:8080
       - $HTTPS_PORT:8443
+      - 8000:8000
     depends_on:
       - db
